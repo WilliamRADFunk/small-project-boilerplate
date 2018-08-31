@@ -8,6 +8,7 @@ import uglify from 'gulp-uglify';
 import connect from 'gulp-connect';
 import concat from 'gulp-concat';
 import del from 'del';
+import sassLint from 'gulp-sass-lint';
 
 gulp.task('clean:dist', () => {
     gutil.log('== Cleaning dist ==');
@@ -21,6 +22,23 @@ gulp.task('tslint', () => {
         formatter: 'verbose'
     }))
     .pipe(tslint.report())
+});
+
+gulp.task('sasslint', () => {
+    gutil.log('== Lintifying the ts files ==');
+    gulp.src(['src/scss/**/*.s+(a|c)ss'])
+    .pipe(sassLint({
+        options: {
+          formatter: 'stylish'
+        },
+        files: {ignore: 'src/scss/reset_author_richard_clark.scss'},
+        rules: {
+          'no-ids': 1,
+          'no-mergeable-selectors': 0
+        }
+      }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
 });
 
 gulp.task('html', () => {
@@ -79,7 +97,7 @@ gulp.task('watch', () => {
 
 gulp.task('build', gulpSequence(
     'clean:dist',
-    'tslint',
+    ['tslint', 'sasslint'],
     ['assets', 'html', 'sass', 'typescript']
 ));
 
