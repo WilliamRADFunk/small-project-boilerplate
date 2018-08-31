@@ -1,0 +1,41 @@
+body
+{
+	background-image: url('../assets/images/background.jpg');
+	background-repeat: no-repeat;
+	background-size: 99vw 99vh;
+	display: block;
+	font-family: Arial;
+}
+h1
+{
+	color: rgb(232, 248, 8);
+	display: block;
+	font-size: 48px;
+	height: 50px;
+	margin-top: 40px;
+	text-align: center;
+	-webkit-text-stroke-width: 3px;
+  	-webkit-text-stroke-color: black;
+}
+#mainview
+{
+	display: block;
+	height: 100vh;
+	left: 0px;
+	position: absolute;
+	top: 0px;
+}
+@media (max-width: 1000px)
+{
+	body
+	{
+		font-size: 10px;
+	}
+}
+@media (max-width: 767px)
+{
+	body
+	{
+		font-size: 8px;
+	}
+}
