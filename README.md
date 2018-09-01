@@ -11,7 +11,7 @@
 
 3. Run `npm install`. If failure, see Common Gotchas section below.
 
-4. Change the name `small-project-boilerplate` to the name of your choice in the `package.json` file (multiple locations in this file), the title in the `index.html` file, and the `README.md` file.
+4. Change the name `small-project-boilerplate` to the name of your choice in the `package.json` file (multiple locations in this file), the title in the `index.html` file, the `gulpfile.babel.js` file, and the `README.md` file.
 
 ***
 
