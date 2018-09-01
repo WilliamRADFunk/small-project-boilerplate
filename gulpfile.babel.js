@@ -1,6 +1,6 @@
 import gulp from 'gulp';
 import gulpSequence from 'gulp-sequence';
-import tslint from "gulp-tslint";
+import tslint from 'gulp-tslint';
 import gutil from 'gulp-util';
 import sass from 'gulp-sass';
 import typescript from 'gulp-typescript';
@@ -9,10 +9,39 @@ import connect from 'gulp-connect';
 import concat from 'gulp-concat';
 import del from 'del';
 import sassLint from 'gulp-sass-lint';
+import typedoc from 'gulp-typedoc';
 
 gulp.task('clean:dist', () => {
     gutil.log('== Cleaning dist ==');
     return del(['dist/**/*']);
+});
+
+gulp.task('clean:docs', () => {
+    gutil.log('== Cleaning docs ==');
+    return del(['docs/**/*']);
+});
+
+gulp.task('readme', () => {
+    gutil.log('== Assembling documentation files ==');
+    return gulp.src(['src/**/*.ts'])
+    .pipe(typedoc({
+        // TypeScript options (see typescript docs)
+        module: 'commonjs',
+        target: 'es5',
+        excludeExternals: true,
+        includeDeclarations: true,
+
+        // Output options (see typedoc docs)
+        out: './docs',
+
+        // TypeDoc options (see typedoc docs)
+        name: 'small-project-boilerplate',
+        theme: 'markdown',
+        plugins: ['mdFlavour bitbucket'],
+        ignoreCompilerErrors: false,
+        version: true,
+    }))
+;
 });
 
 gulp.task('tslint', () => {
@@ -73,8 +102,13 @@ gulp.task('typescript', () => {
 
 gulp.task('sass', () => {
     gutil.log('== Converting scss to css ==');
-    gulp.src('src/scss/**/*.scss')
+    gulp.src([
+        'src/scss/reset_author_richard_clark.scss',
+        'src/scss/**/*.scss'
+    ])
     .pipe(sass({style: 'expanded'}))
+        .on('error', gutil.log)
+    .pipe(concat('styles.css'))
         .on('error', gutil.log)
     .pipe(gulp.dest('dist/css'))
     .pipe(connect.reload())
@@ -99,6 +133,15 @@ gulp.task('build', gulpSequence(
     'clean:dist',
     ['tslint', 'sasslint'],
     ['assets', 'html', 'sass', 'typescript']
+));
+
+gulp.task('typedoc', gulpSequence(
+    'clean:docs',
+    'readme'
+));
+
+gulp.task('lint', gulpSequence(
+    ['tslint', 'sasslint']
 ));
 
 gulp.task('default', gulpSequence(
