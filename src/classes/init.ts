@@ -1,6 +1,9 @@
+import { Example } from './Example';
 /**
  * Placeholder function typically used to initiate the applications loop.
  */
-const init = () => {
-    console.log('Hello, World!');
+export default () => {
+    const example = new Example();
+    const h1El = document.getElementsByTagName('h1');
+    h1El[0].innerHTML = `${example.getName()} Boilerplate for Small Projects`;
 }
