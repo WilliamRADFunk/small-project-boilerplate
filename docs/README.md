@@ -68,12 +68,19 @@ Try running `npm install --ignore-scripts`
 "Error: ENOENT: no such file or directory, scandir 'your-path/small-project-boilerplate\\node_modules\\node-sass\\vendor'"  
   
 
-To remedy this, simply run `npm rebuild node-sass`
+To remedy this, simply run `npm rebuild node-sass`  
+  
+
+\-\- If you're running the `npm run readme` command, and your classes are not all present.  
+  
+
+Make sure you aren't importing a capitalized version of the name (ie. `import { Doug } from './Doug'` when it should in fact be `import { Doug } from './doug'`) assuming of course you've name the file with standard camelCase.
 
 ## Index
 
 ### External modules
 
+* ["classes/example"](modules/_classes_example_.md)
 * ["classes/init"](modules/_classes_init_.md)
 * ["index"](modules/_index_.md)
 

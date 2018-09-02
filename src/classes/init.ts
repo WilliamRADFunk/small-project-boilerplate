@@ -1,4 +1,4 @@
-import { Example } from './Example';
+import { Example } from './example';
 /**
  * Placeholder function typically used to initiate the applications loop.
  */

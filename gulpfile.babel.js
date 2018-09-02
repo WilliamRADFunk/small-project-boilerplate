@@ -37,10 +37,8 @@ gulp.task('readme', () => {
       target: 'es5',
       excludeExternals: true,
       includeDeclarations: true,
-
       // Output options (see typedoc docs)
       out: './docs',
-
       // TypeDoc options (see typedoc docs)
       name: 'small-project-boilerplate',
       theme: 'markdown',
