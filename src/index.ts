@@ -1,3 +1,3 @@
-import init from './classes/init';
+import init from './ts/init';
 
 (window as any)['init'] = init;

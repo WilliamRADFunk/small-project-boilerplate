@@ -1,4 +1,4 @@
-[small-project-boilerplate](../README.md) > ["index"](../modules/_index_.md)
+[planet-funk](../README.md) > ["index"](../modules/_index_.md)
 
 # External module: "index"
 

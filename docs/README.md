@@ -80,9 +80,9 @@ Make sure you aren't importing a capitalized version of the name (ie. `import { 
 
 ### External modules
 
-* ["classes/example"](modules/_classes_example_.md)
-* ["classes/init"](modules/_classes_init_.md)
 * ["index"](modules/_index_.md)
+* ["ts/example"](modules/_ts_example_.md)
+* ["ts/init"](modules/_ts_init_.md)
 
 ---
 
